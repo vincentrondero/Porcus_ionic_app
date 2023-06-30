@@ -1,0 +1,66 @@
+ion-title{
+    color: #FFFF;
+    background-color: #386641;
+    margin: 0;
+}
+#sow_card{
+    width:160px;
+    height: 141px;
+    background-color: #659D60;
+    color: #FFFF;
+    padding: 0;
+    display: inline-block;
+    margin-top: 0;
+    
+}
+#sow-card_title{
+    color: #FFFF;
+    font-size: 60px;
+    margin-left: 70%;
+    padding: 0;
+}
+#sow_card_content{
+    margin-left: 23%;
+}
+#pig_card{
+    width:160px;
+    height: 141px;
+    background-color: #659D60;
+    color: #FFFF;
+    padding: 0;
+    display: inline-block;
+    margin-top: 0;
+}
+#pig-card_title{
+    color: #FFFF;
+    font-size: 60px;
+    margin-left: 39%;
+    padding: 0;
+}
+#pig_card_content{
+    margin-left: 23%;
+}
+#weather_card{
+    height: 250px;
+}
+ion-item{
+    border-radius: 5px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 12px;
+    border: 2px solid #659D60;
+}
+ion-checkbox {
+    --size: 24px;
+    --checkbox-background-checked: #659D60;
+}
+  
+ion-checkbox::part(container) {
+    border-radius: 15px;
+    border: 2px solid #659D60;
+}
+h6{
+    margin-left: 15px;
+    font-size: 20;
+    font-weight: bold;
+}
