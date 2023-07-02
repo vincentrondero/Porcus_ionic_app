@@ -1,19 +1,38 @@
 <ion-header collapse="condense">
-  <ion-toolbar>
-    <ion-title size="medium">Farm Management</ion-title>
-  </ion-toolbar>
+ <ion-toolbar>
+        <ion-title size="medium"><img src="/assets/Header_logo.png" alt="Pig" id="Header_logo">Farm Management</ion-title>
+    </ion-toolbar>    
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card id="weather_card">
+<ion-card id="profile_card">
+  <ion-card-header>
+    <div id="container">
+      <p id="Farm_details"> <ion-avatar><img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" /></ion-avatar></p>
+      <ion-button expand="block" routerLink="/home" id="edit_button"><ion-icon name="create-outline"></ion-icon>Edit</ion-button> 
+    </div>
+  </ion-card-header>
+
+  <ion-card-content>
+   Christine Abanilla
+  </ion-card-content>
+</ion-card>
+
+  <ion-card>
     <ion-card-header>
-      <ion-card-title><ion-avatar>
-        <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-      </ion-avatar></ion-card-title>
+      <div id="container">
+        <p id="Farm_details">Farm Details</p>
+        <ion-button expand="block" routerLink="/home" id="edit_button"><ion-icon name="create-outline"></ion-icon>Edit</ion-button> 
+      </div>
     </ion-card-header>
   
     <ion-card-content>
-      45% chance of rain in the afternoon
+      <p>Farm Name:</p>
+      <p>Operation:</p>
+      <p>Address:</p>
+      <div id="container">
+        <img src="\assets\Map.png"  class="center-image">
+      </div>
     </ion-card-content>
   </ion-card>
   <ion-button expand="block" routerLink="/home"><ion-icon name="Log-Out-Outline"></ion-icon>Log Out</ion-button> 

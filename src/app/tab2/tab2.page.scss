@@ -3,6 +3,18 @@ ion-title{
     background-color: #386641;
     margin: 0;
 }
+#Header_logo {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px; /* Adjust the margin as needed */
+    height: 34px;
+  }
+  
+ion-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
 ion-item{
     border-radius: 5px;
     margin-left: 15px;
