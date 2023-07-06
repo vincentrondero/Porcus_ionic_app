@@ -25,17 +25,21 @@
     margin-top: 15px;
     margin-right: 35px;
   }
-  ion-button#login_button {
-    --background: #386641;
-    --background-hover: #A7C957 !important;
-    --background-activated: #A7C957;
-    --background-focused: #A7C957;
-    width: 80%;
+  button#login_button {
+    background: #386641;
+    color: #FFFF;
+    width: 140px;
+    height: 38.79px;
     font-weight: bold;
     font-size: 20px;
     text-align: center;
-    margin-left: 30px;
     margin-top: 15px;
+    border-radius: 20px;
+    font-family:'Open Sans', Arial, sans-serif;
+    font-weight:10;
+  }
+  button#login_button:active{
+    background: #A7C957;
   }
   p{
     text-align: center;
@@ -48,4 +52,26 @@
     margin-left: 30px;
     margin-top: 15px;
     margin-right: 35px;
+  }
+  input{
+    outline-color: #6A994E;
+    width: 90%;
+    height: 43px;
+    border: 2px solid #6A994E;
+    border-radius: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 15px;
+  }
+  label{
+    text-align: left;
+    margin-right: 65%;
+  }
+  button#redirect_signUp{
+    background: #F75555;
+    color:#FFFF;
+    height: 29px;
+    width: 78px;
+    border-radius:20px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2)
   }

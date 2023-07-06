@@ -1,4 +1,4 @@
-<ion-header collapse="condense">
+<ion-header>
     <ion-toolbar>
         <ion-title size="medium"><img src="/assets/Header_logo.png" alt="Pig" id="Header_logo">Farm Management</ion-title>
     </ion-toolbar>     
@@ -7,12 +7,20 @@
 <ion-content [fullscreen]="true">
   <ion-card id="weather_card">  
     <ion-card-header>
-      <ion-card-title><ion-icon name="ellipse" aria-hidden="true"></ion-icon></ion-card-title>
-      <ion-card-subtitle>Manila</ion-card-subtitle>
+      <ion-searchbar
+      [(ngModel)]="location"
+      (ionInput)="searchLocation()"
+      placeholder="Enter location"
+    ></ion-searchbar>
     </ion-card-header>
   
     <ion-card-content>
-      45% chance of rain in the afternoon
+    <div *ngIf="weatherData$ | async as weatherData">
+      <h2>Weather Information</h2>
+      <p>Location: {{ weatherData[0]?.Location?.LocalizedName }}</p>
+      <p>Temperature: {{ weatherData[0]?.Temperature?.Metric?.Value }}°C</p>
+      <p>Condition: <ion-icon name="{{ getWeatherIcon(weatherData[0]?.Condition) }}"></ion-icon></p>
+    </div>
     </ion-card-content>
   </ion-card>
   <ion-card id="sow_card">

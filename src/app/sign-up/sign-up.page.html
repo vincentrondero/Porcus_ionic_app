@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <ion-content [fullscreen]="true">
     <ion-header collapse="condense">
       <ion-toolbar>
@@ -7,21 +8,11 @@
 
   <ion-content>
     <div id="container1">
-    <ion-item>
-      <ion-label position="floating">Username</ion-label>
-      <ion-input type="text"  name="username" fill="outline"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input type="email" name="email"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" name="password"></ion-input>
-    </ion-item>
-    <ion-button expand="block" routerLink="/login" id="Sign_up_button" >Sign Up</ion-button>
+    <input type="text" id="username" name="username"  placeholder='Username' required>
+    <input type="email" id="email" name="email"  placeholder='Email' required>
+    <input type="password" id="password" name="password"  placeholder='Password' required>
+    <button expand="block" routerLink="/login" id="Sign_up_button" >Sign Up</button>
   </div>
-  <p>Already have an account? <a  routerLink="/login" >Login</a></p>
+  <p>Already have an account? <button  routerLink="/login" id="redirect_signIn">Login</button></p>
   </ion-content>
 

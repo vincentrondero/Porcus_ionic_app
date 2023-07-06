@@ -1,23 +1,20 @@
-<ion-header collapse="condense">
+<ion-header>
  <ion-toolbar>
         <ion-title size="medium"><img src="/assets/Header_logo.png" alt="Pig" id="Header_logo">Farm Management</ion-title>
     </ion-toolbar>    
 </ion-header>
 
 <ion-content [fullscreen]="true">
-<ion-card id="profile_card">
-  <ion-card-header>
-    <div id="container">
-      <p id="Farm_details"> <ion-avatar><img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" /></ion-avatar></p>
-      <ion-button expand="block" routerLink="/home" id="edit_button"><ion-icon name="create-outline"></ion-icon>Edit</ion-button> 
+<div class="Profile_Container">
+  <div id="container">
+    <ion-avatar id="Profile_Pic"><img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" /></ion-avatar>
+    <div id="Profile_name">
+      <p class="Profile_details" id="name">Christine Abanilla </p>
+      <p class="Profile_details">Owner </p>
     </div>
-  </ion-card-header>
-
-  <ion-card-content>
-   Christine Abanilla
-  </ion-card-content>
-</ion-card>
-
+    <ion-button expand="block" routerLink="/home" id="edit_button"><ion-icon name="create-outline"></ion-icon>Edit</ion-button> 
+  </div>
+</div>
   <ion-card>
     <ion-card-header>
       <div id="container">

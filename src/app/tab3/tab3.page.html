@@ -1,34 +1,55 @@
-<ion-header collapse="condense">
+<ion-header>
   <ion-toolbar>
     <ion-title size="medium"><img src="/assets/Header_logo.png" alt="Pig" id="Header_logo">Farm Management</ion-title>
 </ion-toolbar>
-  <div id="calendar">
-  <ion-datetime></ion-datetime>
-  </div>
 </ion-header>
+<ion-item id="calendar_container" ful>
+  <div id="calendar">
+    <ion-datetime></ion-datetime>
+    </div>
+</ion-item>
 <ion-content [fullscreen]="true">
-  <ion-item>
-    To Do
-  </ion-item>
-  <ion-item>
-    <ion-checkbox justify="space-between">Task Name</ion-checkbox>
-  </ion-item>
-  <ion-item>
-    <ion-checkbox justify="space-between">Task Name</ion-checkbox>
-  </ion-item>
-  <ion-item>
-    <ion-checkbox justify="space-between">Task Name</ion-checkbox>
-  </ion-item>
-  <ion-item>
-    <ion-checkbox justify="space-between">Task Name</ion-checkbox>
-  </ion-item>
-  <ion-item>
-    <ion-checkbox justify="space-between">Task Name</ion-checkbox>
-  </ion-item>
-  <ion-item>
-    <ion-checkbox justify="space-between">Task Name</ion-checkbox>
-  </ion-item>
-  <ion-item>
-    <ion-checkbox justify="space-between">Task Name</ion-checkbox>
-  </ion-item>
+  <div>
+
+    <button id="todo" class="todo" (click)="div1Function()" autofocus>Todo</button>
+    <button id="done" class="done" (click)="div2Function()">Done</button>
+
+  </div>
+  <div *ngIf="div1"  class="todo">
+
+    <ion-item class="todo_list">
+      <ion-checkbox justify="space-between">Task Name</ion-checkbox>
+    </ion-item>
+    <ion-item class="todo_list">
+      <ion-checkbox justify="space-between">Task Name</ion-checkbox>
+    </ion-item>
+    <ion-item class="todo_list">
+      <ion-checkbox justify="space-between">Task Name</ion-checkbox>
+    </ion-item>
+    <ion-item class="todo_list">
+      <ion-checkbox justify="space-between">Task Name</ion-checkbox>
+    </ion-item>
+    <ion-item class="todo_list">
+      <ion-checkbox justify="space-between">Task Name</ion-checkbox>
+    </ion-item>
+    <ion-item class="todo_list">
+      <ion-checkbox justify="space-between">Task Name</ion-checkbox>
+    </ion-item>
+    <ion-item class="todo_list">
+      <ion-checkbox justify="space-between">Task Name</ion-checkbox>
+    </ion-item>
+    <ion-item class="todo_list">
+      <ion-checkbox justify="space-between">Task Name</ion-checkbox>
+    </ion-item>
+
+
+  </div>
+
+  <div *ngIf="div2" id="b" class="done">
+    <ion-item class="todo_list">
+      <ion-checkbox justify="space-between" [(ngModel)]="isChecked"  >Sample Done</ion-checkbox>
+    </ion-item>
+  </div>
+  
+  
 </ion-content>

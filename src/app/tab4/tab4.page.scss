@@ -1,3 +1,6 @@
+ion-header{
+    padding: 0;
+}
 ion-title{
     color: #FFFF;
     background-color: #386641;
@@ -8,7 +11,7 @@ ion-title{
     vertical-align: middle;
     margin-right: 10px; /* Adjust the margin as needed */
     height: 34px;
-  }
+}
   
 ion-toolbar {
     display: flex;
@@ -27,6 +30,7 @@ ion-button{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex: 1;
 }
   
 #Farm_details {
@@ -38,9 +42,38 @@ ion-button{
 #edit_button {
     height: 30px;
     width: 25%;
+    --background: #A7C957;
+    --background-hover: #386641!important;
+    --background-activated: #386641;
+    --background-focused: #386641;
 }
-#profile_card{
-    padding: 0%;
+.Profile_Container{
+    padding: 3%;
+    margin: 15px;
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+#Profile_name{
+    margin-right: 13%;
+    display: flex;
+    flex-direction: column;
+    font-family:'Open Sans', Arial, sans-serif;
+}
+.Profile_details{
+    margin-bottom: 0;
+    margin-top: 0;
+    padding: 0;
+}
+#Profile_pic{
+    width: 65px;
+    height: 65px;
+}
+#name{
+    font-weight: bold;
 }
   
   

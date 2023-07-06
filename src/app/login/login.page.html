@@ -5,17 +5,10 @@
     </ion-toolbar>
   </ion-header>
   <div id="container1">
-    <ion-item>
-      <ion-label position="floating">Username</ion-label>
-      <ion-input type="email" ></ion-input>
-    </ion-item>
+    <input type="email" id="email" name="email"  placeholder='Email' required>
+    <input type="password" id="password" name="password"  placeholder='Password' required>
 
-    <ion-item>
-      <ion-label position="floating">Password</ion-label>
-      <ion-input type="password"></ion-input>
-    </ion-item>
-
-    <ion-button expand="block" id="login_button" routerLink="/tabs">Login</ion-button>
+    <button id="login_button" routerLink="/tabs">LOGIN</button>
   </div>
-  <p>Don't have an account yet? <a  routerLink="/sign-up" >Sign Up</a></p>
+  <p>Doesn't have an account yet? <button  routerLink="/sign-up" id="redirect_signUp">Sign up</button></p>
 </ion-content>

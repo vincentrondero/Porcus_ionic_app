@@ -1,3 +1,6 @@
+ion-header{
+    padding: 0;
+}
 ion-title{
     color: #FFFF;
     background-color: #386641;
@@ -16,11 +19,10 @@ ion-toolbar {
     justify-content: flex-start;
 }
 ion-datetime{
-    margin: 20px;
     background-color: #FFFF;
 
 }
-ion-item{
+.todo_list{
     border-radius: 5px;
     margin-left: 15px;
     margin-right: 15px;
@@ -36,8 +38,27 @@ ion-checkbox::part(container) {
     border-radius: 15px;
     border: 2px solid #659D60;
 }
-#calendar{
+#todo{
+    margin-left: 20%;
     background-color: #FFFF;
-    margin: 0;
-    height: 80%;
+    font-size: 20px;
+    font-weight: bold;
+    color: #676967;
+}
+#todo:focus{
+    color: #659D60;
+}
+#done{
+    margin-left: 30%;
+    background-color: #FFFF;
+    font-size: 20px;
+    font-weight: bold;
+    color: #676967;
+}
+#done:focus{
+    color: #659D60;
+}
+#calendar_container{
+    margin:0px;
+    margin-bottom: 15px;
 }
