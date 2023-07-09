@@ -3,10 +3,10 @@
     <ion-title size="medium"><img src="/assets/Header_logo.png" alt="Pig" id="Header_logo">Farm Management</ion-title>
 </ion-toolbar>
 </ion-header>
-<ion-item id="calendar_container" ful>
+<ion-item id="calendar_container" full>
   <div id="calendar">
-    <ion-datetime></ion-datetime>
-    </div>
+    <ion-datetime displayFormat="MMM DD, YYYY HH:mm" pickerFormat="MMM DD, YYYY HH:mm" [(ngModel)]="newTaskDeadline" placeholder="Task Deadline"></ion-datetime>
+  </div>
 </ion-item>
 <ion-content [fullscreen]="true">
   <div>
@@ -16,40 +16,42 @@
 
   </div>
   <div *ngIf="div1"  class="todo">
-
-    <ion-item class="todo_list">
-      <ion-checkbox justify="space-between">Task Name</ion-checkbox>
-    </ion-item>
-    <ion-item class="todo_list">
-      <ion-checkbox justify="space-between">Task Name</ion-checkbox>
-    </ion-item>
-    <ion-item class="todo_list">
-      <ion-checkbox justify="space-between">Task Name</ion-checkbox>
-    </ion-item>
-    <ion-item class="todo_list">
-      <ion-checkbox justify="space-between">Task Name</ion-checkbox>
-    </ion-item>
-    <ion-item class="todo_list">
-      <ion-checkbox justify="space-between">Task Name</ion-checkbox>
-    </ion-item>
-    <ion-item class="todo_list">
-      <ion-checkbox justify="space-between">Task Name</ion-checkbox>
-    </ion-item>
-    <ion-item class="todo_list">
-      <ion-checkbox justify="space-between">Task Name</ion-checkbox>
-    </ion-item>
-    <ion-item class="todo_list">
-      <ion-checkbox justify="space-between">Task Name</ion-checkbox>
-    </ion-item>
-
+    <ion-list>
+      <ion-item *ngFor="let task of tasks">
+        <ion-label>{{ task.name }}</ion-label>
+        <ion-note>{{ task.deadline | date: 'yyyy-MM-dd HH:mm' }}</ion-note>
+        <ion-checkbox [(ngModel)]="task.done" (ionChange)="toggleTaskDone(task)"></ion-checkbox>
+      </ion-item>
+    </ion-list>
 
   </div>
 
   <div *ngIf="div2" id="b" class="done">
-    <ion-item class="todo_list">
-      <ion-checkbox justify="space-between" [(ngModel)]="isChecked"  >Sample Done</ion-checkbox>
-    </ion-item>
+    <ion-list>
+      <ion-item *ngFor="let task of doneTasks">
+        <ion-label>{{ task.name }}</ion-label>
+        <ion-checkbox [(ngModel)]="task.done" (ionChange)="toggleTaskDone(task)"></ion-checkbox>
+      </ion-item>
+    </ion-list>
   </div>
-  
-  
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-button id="sched_add_button" class="red-fab" size="medium" (click)="showOverlay()">
+      <ion-icon name="add"></ion-icon>Set</ion-button>
+  </ion-fab>
 </ion-content>
+<div id="overlay" [ngStyle]="{ 'visibility': showOverlayContent ? 'visible' : 'hidden' }">
+  <div class="overlay-content">
+    <h2>Set Schedules</h2>
+      <div class="task-input">
+        <ion-input [(ngModel)]="newTask" placeholder="New Task"></ion-input>
+      </div>
+      <div id="calendar" class="datetime-input">
+        <ion-datetime displayFormat="MMM DD, YYYY HH:mm" pickerFormat="MMM DD, YYYY HH:mm" [(ngModel)]="newTaskDeadline" placeholder="Task Deadline"></ion-datetime>
+      </div>
+      <div class="add-button">
+        <button (click)="addTask()" class="add-button"><ion-icon name="add"></ion-icon>ADD TASK</button>
+      </div>    
+    <button id="closeButton" (click)="hideOverlay()"><ion-icon name="exit"></ion-icon>Close</button>
+  </div>
+</div>
