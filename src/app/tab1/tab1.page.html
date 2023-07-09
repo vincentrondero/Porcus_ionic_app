@@ -14,18 +14,13 @@
     ></ion-searchbar>
     </ion-card-header>
   
-    <ion-card-content >
-      <div *ngIf="weatherData$ | async as weatherData">
-        <div class="weather-info">
-          <div class="weather-logo">
-            <img [src]="getWeatherIcon(weatherData[0]?.WeatherText)" alt="Weather Condition">
-          </div>
-          <div class="weather-details">
-            <p>Temperature: {{ weatherData[0]?.Temperature?.Metric?.Value }}°C</p>
-            <p>Condition: {{ weatherData[0]?.WeatherText }}</p>
-          </div>
-        </div>
-      </div>      
+    <ion-card-content>
+    <div *ngIf="weatherData$ | async as weatherData">
+      <h2>Weather Information</h2>
+      <p>Location: {{ weatherData[0]?.Location?.LocalizedName }}</p>
+      <p>Temperature: {{ weatherData[0]?.Temperature?.Metric?.Value }}°C</p>
+      <p>Condition: <ion-icon name="{{ getWeatherIcon(weatherData[0]?.Condition) }}"></ion-icon></p>
+    </div>
     </ion-card-content>
   </ion-card>
   <ion-card id="sow_card">
