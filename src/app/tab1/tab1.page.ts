@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { WeatherService } from '../weather.service';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+
+type Task = {
+  id?: string;
+  name: string;
+  done: boolean;
+  deadline: Date;
+};
 
 @Component({
   selector: 'app-tab1',
@@ -11,8 +19,14 @@ export class Tab1Page implements OnInit {
   weatherData$: Observable<any> | null = null;;
   locationKey: string = '';
   location: string = '';
+  tasksCollection!: AngularFirestoreCollection<Task>;
+  tasks$!: Observable<Task[]>;
+  pigCount$!: Observable<number>;
 
-  constructor(private weatherService: WeatherService) {}
+  constructor(private weatherService: WeatherService, private firestore: AngularFirestore) {
+    this.tasksCollection = this.firestore.collection<Task>('tasks');
+    this.tasks$ = this.tasksCollection.valueChanges();
+  }
 
   ngOnInit() {
     //this.weatherData$ = this.weatherService.getWeather(this.locationKey);
@@ -26,6 +40,10 @@ export class Tab1Page implements OnInit {
        // console.log('Error:', error);
      // }
    // );
+   const pigsCollection = this.firestore.collection('Pigs');
+   this.pigCount$ = pigsCollection.valueChanges().pipe(
+     map(pigs => pigs.length)
+   );
   }
 
   searchLocation() {

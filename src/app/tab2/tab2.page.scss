@@ -18,18 +18,19 @@ ion-toolbar {
     align-items: center;
     justify-content: flex-start;
 }
-ion-item{
-    border-radius: 5px;
-    margin-left: 15px;
-    margin-right: 15px;
-    margin-top: 12px;
-    border: 2px solid #659D60;
-    padding: 0;
+ion-item {
+  border-radius: 5px;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 12px;
+  border: 2px solid #659D60;
+  padding: 0;
 }
-.three_dots{
-    margin-left: 77%;
-    margin-right: 0;
+
+.three_dots {
+  color: #000;
 }
+
 #sched_add_button{
     --background: #F75555;
     --background-hover: #ef8989 !important;
@@ -41,3 +42,85 @@ ion-item{
     font-weight: bold;
     opacity: 80%;
 }
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #659D60;
+    z-index: 9999;
+  }
+  
+  .overlay-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFFF;
+    text-align: center;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 95%;
+    height: 50%;
+    z-index: 10000;
+    border: 2px solid black; 
+  }
+  #overlay_header{
+    background-color: #A7C957;
+    color: #FFFF;
+    width: 100%;
+    height: 40px;
+    margin-top: 0;
+    padding: 10px;
+    border-radius: 20px 20px 0px 0px;  
+    border-bottom: 2px solid #000;
+  }
+    
+  .centered-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .centered-form label {
+    text-align: left;
+    margin-top: 10px;
+    width: 95%;
+  }
+  
+  .centered-form input,
+  .centered-form select {
+    width: 95%;
+    border: 2px solid #386641;
+    border-radius: 20px;
+    height: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+#closeButton {
+    margin-right: 10px;
+    background-color: #FFFF;
+    height: 40px;
+    width: 20%;
+}
+#addPigButton{
+  margin-right: 15px;
+  height: 40px;
+  width: 30%;
+  background-color: #659D60;
+  border-radius: 10px;
+  font-size: 16px;
+  color: #FFFF;
+}
+  

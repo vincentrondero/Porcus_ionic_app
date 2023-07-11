@@ -22,7 +22,7 @@ ion-datetime{
     background-color: #FFFF;
 
 }
-.todo_list{
+.task-item{
     border-radius: 5px;
     margin-left: 15px;
     margin-right: 15px;
@@ -95,21 +95,20 @@ ion-checkbox::part(container) {
     flex-direction: column;
     align-items: center;
     width: 95%;
-    height: 80%;
+    height: 68%;
     z-index: 10000;
     border: 2px solid black; 
   }
-  
-  #closeButton {
+  #overlay_header{
+    background-color: #A7C957;
+    color: #FFFF;
     width: 100%;
     height: 40px;
-    background-color: #F75555;
-    border: none;
-    color: white;
-    border-radius: 0px 0px 18px 18px;
-    font-weight: bold;
+    margin-top: 0;
+    padding: 10px;
+    border-radius: 20px 20px 0px 0px;  
+    border-bottom: 2px solid #000;
   }
-  
   .task-input {
     margin-bottom: 0px;
     background-color: #FFFF;
@@ -124,17 +123,26 @@ ion-checkbox::part(container) {
     margin-top: 10px;
     margin-bottom: 0;
   }
-  
-  .add-button {
-    margin-top: auto; 
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
     width: 100%;
-    height: 40px;
-    background: #A7C957;
-    color: #FFFF;
-    font-weight: bold;
-    font-size: 24px;
+    margin-top: 20px;
   }
-.add-button:active{
-        background: #386641;
+  
+#closeButton {
+    margin-right: 10px;
+    background-color: #FFFF;
+    height: 40px;
+    width: 20%;
+}
+#addPigButton{
+  margin-right: 15px;
+  height: 40px;
+  width: 30%;
+  background-color: #659D60;
+  border-radius: 10px;
+  font-size: 16px;
+  color: #FFFF;
 }
   

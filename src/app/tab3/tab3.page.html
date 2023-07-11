@@ -15,25 +15,29 @@
     <button id="done" class="done" (click)="div2Function()">Done</button>
 
   </div>
-  <div *ngIf="div1"  class="todo">
+  <div *ngIf="div1" class="todo">
     <ion-list>
-      <ion-item *ngFor="let task of tasks">
-        <ion-label>{{ task.name }}</ion-label>
-        <ion-note>{{ task.deadline | date: 'yyyy-MM-dd HH:mm' }}</ion-note>
-        <ion-checkbox [(ngModel)]="task.done" (ionChange)="toggleTaskDone(task)"></ion-checkbox>
-      </ion-item>
+      <ng-container *ngFor="let task of tasks$ | async">
+        <ion-item *ngIf="!task.done" class="task-item" > 
+          <ion-checkbox [(ngModel)]="task.done" (ionChange)="toggleTaskDone(task)" [aria-label]="task.name">{{ task.name }}</ion-checkbox>
+        </ion-item>
+      </ng-container>
     </ion-list>
-
   </div>
-
+  
   <div *ngIf="div2" id="b" class="done">
     <ion-list>
-      <ion-item *ngFor="let task of doneTasks">
-        <ion-label>{{ task.name }}</ion-label>
-        <ion-checkbox [(ngModel)]="task.done" (ionChange)="toggleTaskDone(task)"></ion-checkbox>
-      </ion-item>
+      <ng-container *ngFor="let task of tasks$ | async">
+        <ion-item *ngIf="task.done" class="task-item">
+          <ion-checkbox [(ngModel)]="task.done" (ionChange)="toggleTaskDone(task)" [aria-label]="task.name">{{ task.name }}</ion-checkbox>
+        </ion-item>
+      </ng-container>
     </ion-list>
   </div>
+  
+  
+  
+  
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-button id="sched_add_button" class="red-fab" size="medium" (click)="showOverlay()">
@@ -42,16 +46,16 @@
 </ion-content>
 <div id="overlay" [ngStyle]="{ 'visibility': showOverlayContent ? 'visible' : 'hidden' }">
   <div class="overlay-content">
-    <h2>Set Schedules</h2>
+    <h2 id="overlay_header" >Set Schedules</h2>
       <div class="task-input">
         <ion-input [(ngModel)]="newTask" placeholder="New Task"></ion-input>
       </div>
       <div id="calendar" class="datetime-input">
-        <ion-datetime displayFormat="MMM DD, YYYY HH:mm" pickerFormat="MMM DD, YYYY HH:mm" [(ngModel)]="newTaskDeadline" placeholder="Task Deadline"></ion-datetime>
+        <ion-datetime displayFormat="YYYY-MM-DDTHH:mm:ss.sssZ " pickerFormat="YYYY-MM-DDTHH:mm:ss.sssZ" [(ngModel)]="newTaskDeadline" placeholder="Task Deadline"></ion-datetime>
       </div>
-      <div class="add-button">
-        <button (click)="addTask()" class="add-button"><ion-icon name="add"></ion-icon>ADD TASK</button>
-      </div>    
-    <button id="closeButton" (click)="hideOverlay()"><ion-icon name="exit"></ion-icon>Close</button>
+      <div class="button-container">
+        <button id="closeButton" (click)="hideOverlay()">Close</button>
+        <button type="submit" id="addPigButton" (click)="addTask()">Set Task</button>
+      </div>
   </div>
 </div>

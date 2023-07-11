@@ -30,36 +30,29 @@
   </ion-card>
   <ion-card id="sow_card">
     <ion-card-header>
-      <ion-card-title id="sow-card_title">6</ion-card-title>
+      <ion-card-title id="sow-card_title">{{ pigCount$ | async }}</ion-card-title>
     </ion-card-header>
   
     <ion-card-content id="sow_card_content">
       <ion-icon name="ellipse" aria-hidden="true"></ion-icon>Sow Pigs
     </ion-card-content>
   </ion-card>
+
   <ion-card id="pig_card">
     <ion-card-header>
-      <ion-card-title id="pig-card_title">24</ion-card-title>
+      <ion-card-title id="pig-card_title">{{ pigCount$ | async }}</ion-card-title>
     </ion-card-header>
   
     <ion-card-content id="pig_card_content">
-      <ion-icon name="ellipse" aria-hidden="true"></ion-icon>Sow Pigs
+      <ion-icon name="ellipse" aria-hidden="true"></ion-icon>Grower
     </ion-card-content>
   </ion-card>
-  <h6>To Do</h6>
-  <ion-item>
-    <ion-checkbox justify="space-between">Task Name</ion-checkbox>
-  </ion-item>
-  <ion-item>
-    <ion-checkbox justify="space-between">Task Name</ion-checkbox>
-  </ion-item>
-  <ion-item>
-    <ion-checkbox justify="space-between">Task Name</ion-checkbox>
-  </ion-item>
-  <ion-item>
-    <ion-checkbox justify="space-between">Task Name</ion-checkbox>
-  </ion-item>
-  <ion-item>
-    <ion-checkbox justify="space-between">Task Name</ion-checkbox>
-  </ion-item>
+  <h3 id="task_header">To Do</h3>
+  <ion-list>
+    <ng-container *ngFor="let task of tasks$ | async">
+      <ion-item *ngIf="!task.done">
+       {{ task.name }}
+      </ion-item>
+    </ng-container>
+  </ion-list>     
 </ion-content>

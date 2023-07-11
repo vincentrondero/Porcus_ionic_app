@@ -1,74 +1,46 @@
 <ion-header>
   <ion-toolbar>
     <ion-title size="medium"><img src="/assets/Header_logo.png" alt="Pig" id="Header_logo">Farm Management</ion-title>
-</ion-toolbar>   
+</ion-toolbar>
 </ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-searchbar></ion-searchbar>
-  <ion-item>
-    Pig ID
-    <ion-icon name="ellipsis-vertical" aria-hidden="true" class="three_dots" ></ion-icon>
+  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="filterPigs()" placeholder="Seach PigID" showCancelButton="focus"></ion-searchbar>
+  
+  <ion-item *ngFor="let pigs of filteredPigs$ | async">
+    <ion-buttons slot="end">
+      <ion-icon name="ellipsis-vertical" aria-hidden="true" class="three_dots"></ion-icon>
+    </ion-buttons>
+    {{ pigs.pigID }}
   </ion-item>
-  <ion-item>
-    Pig ID
-    <ion-icon name="ellipsis-vertical" aria-hidden="true" class="three_dots" ></ion-icon>
-  </ion-item>
-  <ion-item>
-    Pig ID
-    <ion-icon name="ellipsis-vertical" aria-hidden="true" class="three_dots" ></ion-icon>
-  </ion-item>
-  <ion-item>
-    Pig ID
-    <ion-icon name="ellipsis-vertical" aria-hidden="true" class="three_dots" ></ion-icon>
-  </ion-item>
-  <ion-item>
-    Pig ID
-    <ion-icon name="ellipsis-vertical" aria-hidden="true" class="three_dots" ></ion-icon>
-  </ion-item>
-  <ion-item>
-    Pig ID
-    <ion-icon name="ellipsis-vertical" aria-hidden="true" class="three_dots" ></ion-icon>
-  </ion-item>
-  <ion-item>
-    Pig ID
-    <ion-icon name="ellipsis-vertical" aria-hidden="true" class="three_dots" ></ion-icon>
-  </ion-item>
-  <ion-item>
-    Pig ID
-    <ion-icon name="ellipsis-vertical" aria-hidden="true" class="three_dots" ></ion-icon>
-  </ion-item>
-  <ion-item>
-    Pig ID
-    <ion-icon name="ellipsis-vertical" aria-hidden="true" class="three_dots" ></ion-icon>
-  </ion-item>
-  <ion-item>
-    Pig ID
-    <ion-icon name="ellipsis-vertical" aria-hidden="true" class="three_dots" ></ion-icon>
-  </ion-item>
-  <ion-item>
-    Pig ID
-    <ion-icon name="ellipsis-vertical" aria-hidden="true" class="three_dots" ></ion-icon>
-  </ion-item>
-  <ion-item>
-    Pig ID
-    <ion-icon name="ellipsis-vertical" aria-hidden="true" class="three_dots" ></ion-icon>
-  </ion-item>
-  <ion-item>
-    Pig ID
-    <ion-icon name="ellipsis-vertical" aria-hidden="true" class="three_dots" ></ion-icon>
-  </ion-item>
-  <ion-item>
-    Pig ID
-    <ion-icon name="ellipsis-vertical" aria-hidden="true" class="three_dots" ></ion-icon>
-  </ion-item>
-  <ion-item>
-    Pig ID
-    <ion-icon name="ellipsis-vertical" aria-hidden="true" class="three_dots" ></ion-icon>
-  </ion-item>
+  
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-button id="sched_add_button"  class="red-fab" size="medium">
-      <ion-icon name="add"></ion-icon> Set
+    <ion-button id="sched_add_button" class="red-fab" size="medium" (click)="showOverlay()">
+      <ion-icon name="add"></ion-icon> ADD
     </ion-button>
   </ion-fab>
 </ion-content>
+<div id="overlay" [ngStyle]="{ 'visibility': showOverlayContent ? 'visible' : 'hidden' }">
+  <div class="overlay-content">
+    <h2 id="overlay_header">Register Pigs</h2>
+    <form class="centered-form">
+      <label for="pigID">Pig ID:</label>
+      <input type="text" id="pigID" name="pigID" [(ngModel)]="pigID" required>
+
+      <label for="weight">Weight:</label>
+      <input type="number" id="weight" name="Weight" [(ngModel)]="weight" required>
+
+      <label for="dateOfBirth">Date of Birth:</label>
+      <input type="date" id="dateOfBirth" name="dateOfBirth" [(ngModel)]="dateOfBirth" required>
+
+      <label for="gender">Gender:</label>
+      <select id="gender" name="Gender" [(ngModel)]="gender" required>
+        <option value="male" class="option">Male</option>
+        <option value="female" class="option">Female</option>
+      </select>
+      <div class="button-container">
+        <button id="closeButton" (click)="hideOverlay()">Close</button>
+        <button type="submit" id="addPigButton" (click)="addPig()">Add Pig</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -5,13 +5,14 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: "AIzaSyB1FttDrQJ_K1dV0ufpQdBdSxtogpA8sB0",
-    authDomain: "porcus-2b3aa.firebaseapp.com",
-    projectId: "porcus-2b3aa",
-    storageBucket: "porcus-2b3aa.appspot.com",
-    messagingSenderId: "1033666008600",
-    appId: "1:1033666008600:web:613bb35bf9b1fa6e25d56d",
-    measurementId: "G-L38LMQP09B"
+    apiKey: "AIzaSyDwdrvJJRjtEMBkPYBJ3VKYTAKqakXXLUQ",
+    authDomain: "porcus1-1f179.firebaseapp.com",
+    databaseURL: "https://porcus1-1f179-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "porcus1-1f179",
+    storageBucket: "porcus1-1f179.appspot.com",
+    messagingSenderId: "522197554398",
+    appId: "1:522197554398:web:ed6e5805c3754815931e4f",
+    measurementId: "G-69JW6FDK31"
   },
 };
 
