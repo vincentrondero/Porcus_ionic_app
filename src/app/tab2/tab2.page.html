@@ -32,10 +32,10 @@
       <label for="dateOfBirth">Date of Birth:</label>
       <input type="date" id="dateOfBirth" name="dateOfBirth" [(ngModel)]="dateOfBirth" required>
 
-      <label for="gender">Gender:</label>
+      <label for="gender">Type:</label>
       <select id="gender" name="Gender" [(ngModel)]="gender" required>
-        <option value="male" class="option">Male</option>
-        <option value="female" class="option">Female</option>
+        <option value="Grower" class="option">Grower</option>
+        <option value="Sow" class="option">Sow</option>
       </select>
       <div class="button-container">
         <button id="closeButton" (click)="hideOverlay()">Close</button>

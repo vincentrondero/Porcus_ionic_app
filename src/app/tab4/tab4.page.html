@@ -12,23 +12,76 @@
       <p class="Profile_details" id="name">Christine Abanilla </p>
       <p class="Profile_details">Owner </p>
     </div>
-    <ion-button expand="block" routerLink="/home" id="edit_button"><ion-icon name="create-outline"></ion-icon>Edit</ion-button> 
+    <ion-button expand="block" (click)="showOverlay()" id="edit_button"><ion-icon name="create-outline"></ion-icon>Edit</ion-button> 
   </div>
 </div>
-  <ion-card>
-    <ion-card-header>
-      <div id="container">
-        <p id="Farm_details">Farm Details</p>
-        <ion-button expand="block" routerLink="/home" id="edit_button"><ion-icon name="create-outline"></ion-icon>Edit</ion-button> 
+<ion-card>
+  <ion-card-header>
+    <div id="container">
+      <p id="Farm_details">Farm Details</p>
+      <ion-button expand="block" (click)="showOverlay1()" id="edit_button">
+        <ion-icon name="create-outline"></ion-icon>Edit
+      </ion-button>
+    </div>
+  </ion-card-header>
+
+  <ion-card-content id="farmdetails">
+    <p>Farm Name: {{ farmName }}</p>
+    <p>Operation: {{ operation }}</p>
+    <p>Address: {{ address }}</p>
+    <div id="map" style="height: 350px;"></div>
+  </ion-card-content>
+</ion-card>
+
+<ion-button expand="block" routerLink="/home">
+  <ion-icon name="Log-Out-Outline"></ion-icon>Log Out
+</ion-button>
+
+
+<div id="overlay" [ngStyle]="{ 'visibility': showOverlayContent ? 'visible' : 'hidden' }">
+  <div class="overlay-content">
+    <h2 id="overlay_header">Edit Profile</h2>
+    <div class="input-container">
+      <label for="profileName">Profile Name:</label>
+      <input type="text" id="profileName" [(ngModel)]="profileName" placeholder="Enter profile name">
+    </div>
+    <div class="input-container">
+      <label for="profilePic">Profile Picture:</label>
+      <input type="file" id="profilePic" (change)="onFileSelected($event)">
+    </div>
+    <div class="input-container">
+      <label for="category">Category:</label>
+      <input type="text" id="category" [(ngModel)]="category" placeholder="Enter category">
+    </div>
+    <div class="button-container">
+      <button id="closeButton" (click)="hideOverlay()">Close</button>
+      <button type="submit" id="addPigButton" (click)="saveProfile()">Save Profile</button>
+    </div>
+  </div>
+</div>
+
+<div id="overlay" [ngStyle]="{ 'visibility': showOverlayContent1 ? 'visible' : 'hidden' }">
+  <div class="overlay-content">
+    <h2 id="overlay_header">Edit Farm Details</h2>
+    <div class="input-container">
+      <label for="farmName">Farm Name:</label>
+      <input type="text" id="farmName" [(ngModel)]="farmName">
+
+      <label for="operation">Operation:</label>
+      <select id="operation" [(ngModel)]="operation">
+        <option value="farrow to finish">Farrow to Finish</option>
+        <option value="suckling to finish">Suckling to Finish</option>
+        <option value="farrow to suckling">Farrow to Suckling</option>
+      </select>
+
+      <label for="address">Address:</label>
+      <input type="text" id="address" [(ngModel)]="address">
+
+      <div class="button-container">
+        <button id="closeButton" (click)="hideOverlay1()">Close</button>
+        <button type="submit" id="addPigButton" (click)="saveProfile1()">Save Profile</button>
       </div>
-    </ion-card-header>
-  
-    <ion-card-content>
-      <p>Farm Name:</p>
-      <p>Operation:</p>
-      <p>Address:</p>
-        <div id="map" style="height: 350px;"></div>
-    </ion-card-content>
-  </ion-card>
-  <ion-button expand="block" routerLink="/home"><ion-icon name="Log-Out-Outline"></ion-icon>Log Out</ion-button> 
-</ion-content>
+    </div>
+  </div>
+</div>
+

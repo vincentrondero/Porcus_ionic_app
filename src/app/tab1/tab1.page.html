@@ -30,27 +30,26 @@
   </ion-card>
   <ion-card id="sow_card">
     <ion-card-header>
-      <ion-card-title id="sow-card_title">{{ pigCount$ | async }}</ion-card-title>
+      <ion-card-title id="sow-card_title">{{ femalePigCount$ | async }}</ion-card-title>
     </ion-card-header>
-  
     <ion-card-content id="sow_card_content">
       <ion-icon name="ellipse" aria-hidden="true"></ion-icon>Sow Pigs
     </ion-card-content>
   </ion-card>
-
+  
   <ion-card id="pig_card">
     <ion-card-header>
-      <ion-card-title id="pig-card_title">{{ pigCount$ | async }}</ion-card-title>
+      <ion-card-title id="pig-card_title">{{ malePigCount$ | async }}</ion-card-title>
     </ion-card-header>
-  
     <ion-card-content id="pig_card_content">
       <ion-icon name="ellipse" aria-hidden="true"></ion-icon>Grower
     </ion-card-content>
   </ion-card>
+  
   <h3 id="task_header">To Do</h3>
   <ion-list>
     <ng-container *ngFor="let task of tasks$ | async">
-      <ion-item *ngIf="!task.done">
+      <ion-item *ngIf="!task.done" routerLink="/tabs/tab3">
        {{ task.name }}
       </ion-item>
     </ng-container>

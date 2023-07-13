@@ -3,12 +3,14 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/comp
 import { Observable } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import { Timestamp } from 'firebase/firestore';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 type Task = {
   id?: string;
   name: string;
   done: boolean;
   deadline: Date;
+  userId: string;
 };
 
 @Component({
@@ -22,14 +24,24 @@ export class Tab3Page {
   tasks$: Observable<Task[]>;
   newTask: string;
   newTaskDeadline!: string;
+  userId!: string;
 
-  constructor(private firestore: AngularFirestore, private datePipe: DatePipe) {
+
+  constructor(private firestore: AngularFirestore, private datePipe: DatePipe, private afAuth: AngularFireAuth) {
     this.tasksCollection = this.firestore.collection<Task>('tasks');
     this.tasks$ = this.tasksCollection.valueChanges();
     this.newTask = '';
   }
 
   ngOnInit() {
+    this.afAuth.authState.subscribe(user => {
+      if (user) {
+        this.userId = user.uid;
+        this.tasksCollection = this.firestore.collection<Task>('tasks', ref => ref.where('userId', '==', this.userId));
+        this.tasks$ = this.tasksCollection.valueChanges();
+      }
+    });
+
     this.newTaskDeadline = new Date().toISOString();
   }
 
@@ -63,24 +75,30 @@ export class Tab3Page {
 
   addTask() {
     if (this.newTask && this.newTaskDeadline) {
-      const taskId = this.firestore.createId();
-      const task: Task = {
-        id: taskId,
-        name: this.newTask,
-        done: false,
-        deadline: new Date(this.newTaskDeadline)
-      };
-      this.newTaskDeadline = new Date().toISOString();
-      this.tasksCollection.doc(taskId).set(task)
-        .then(() => {
-          this.newTask = '';
-          this.newTaskDeadline = '';
-        })
-        .catch((error) => {
-          console.error('Error adding task:', error);
-        });
+      this.afAuth.authState.subscribe(user => {
+        if (user) {
+          const taskId = this.firestore.createId();
+          const task: Task = {
+            id: taskId,
+            userId: user.uid,
+            name: this.newTask,
+            done: false,
+            deadline: new Date(this.newTaskDeadline)
+          };
+          this.newTaskDeadline = new Date().toISOString();
+          this.tasksCollection.doc(taskId).set(task)
+            .then(() => {
+              this.newTask = '';
+              this.newTaskDeadline = '';
+            })
+            .catch((error) => {
+              console.error('Error adding task:', error);
+            });
+        }
+      });
     }
   }
+
   toggleTaskDone(task: Task) {
     const docId = task.id;
     const taskRef = this.firestore.collection("tasks").doc(docId);
