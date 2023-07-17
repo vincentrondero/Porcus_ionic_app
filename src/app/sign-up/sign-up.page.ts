@@ -22,12 +22,14 @@ export class SignUpPage implements OnInit {
   
   signUp() {
     this.afAuth.createUserWithEmailAndPassword(this.email, this.password)
-      .then((userCredential: any) => { // Add the 'any' type
+      .then((userCredential: any) => {
         console.log(userCredential.user);
         this.router.navigate(['./login']);
       })
-      .catch((error: any) => { // Add the 'any' type
+      .catch((error: any) => {
         console.log(error);
+        this.loginError = true; // Set the loginError flag to true
       });
   }
+  
 }

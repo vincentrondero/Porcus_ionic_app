@@ -32,6 +32,9 @@ ion-button{
     align-items: center;
     flex: 1;
 }
+#farmdetialscontainer{
+    border: 2px solid #659D60;
+}
   
 #Farm_details {
     flex: 1;
@@ -56,6 +59,7 @@ ion-button{
     align-items: center;
     box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.1);
     border-radius: 4px;
+    border: 2px solid #659D60;
 }
 #Profile_name{
     margin-right: 13%;

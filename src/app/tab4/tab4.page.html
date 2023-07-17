@@ -5,17 +5,22 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-<div class="Profile_Container">
-  <div id="container">
-    <ion-avatar id="Profile_Pic"><img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" /></ion-avatar>
-    <div id="Profile_name">
-      <p class="Profile_details" id="name">Christine Abanilla </p>
-      <p class="Profile_details">Owner </p>
+  <div class="Profile_Container">
+    <div id="container">
+      <ion-avatar id="Profile_Pic">
+        <img alt="Silhouette of a person's head" [src]="profilePictureUrl" />
+      </ion-avatar>
+      <div id="Profile_name">
+        <p class="Profile_details" id="name">{{ profileName }}</p>
+        <p class="Profile_details">{{ category }}</p>
+      </div>
+      <ion-button expand="block" (click)="showOverlay()" id="edit_button">
+        <ion-icon name="create-outline"></ion-icon>Edit
+      </ion-button>
     </div>
-    <ion-button expand="block" (click)="showOverlay()" id="edit_button"><ion-icon name="create-outline"></ion-icon>Edit</ion-button> 
   </div>
-</div>
-<ion-card>
+  
+<ion-card id="farmdetialscontainer">
   <ion-card-header>
     <div id="container">
       <p id="Farm_details">Farm Details</p>

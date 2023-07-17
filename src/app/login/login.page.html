@@ -4,13 +4,15 @@
       <ion-title size="large" id="title">Porcus</ion-title>
     </ion-toolbar>
   </ion-header>
-  <div id="container1">
-    <form (ngSubmit)="login()">
-    <input type="email" id="email" name="email"  placeholder='Email' [(ngModel)]="email" required>
-    <input type="password" id="password" name="password"  placeholder='Password' [(ngModel)]="password" required>
-
-    <button id="login_button" type="submit" >LOGIN</button>
-  </form>
+  <p *ngIf="loginError" class="error-message">Incorrect Credentials</p>
+  <div [ngClass]="{ 'login-error': loginError }">
+    <form (ngSubmit)="login()" id="container1">
+      <input type="email" id="email" name="email" placeholder='Email' [(ngModel)]="email" required>
+      <input type="password" id="password" name="password" placeholder='Password' [(ngModel)]="password" required>
+      <div>
+      <button id="login_button" type="submit">LOGIN</button>
+      </div>
+    </form>
   </div>
-  <p>Doesn't have an account yet? <button  routerLink="/sign-up" id="redirect_signUp">Sign up</button></p>
+  <p id="bottompart">Doesn't have an account yet? <button routerLink="/sign-up" id="redirect_signUp">Sign up</button></p>
 </ion-content>

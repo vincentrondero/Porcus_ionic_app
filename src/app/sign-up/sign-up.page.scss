@@ -38,13 +38,12 @@ button#Sign_up_button{
     margin-right: 35px;
   }
   
-  p{
+  #bottompart {
     text-align: center;
-  
     position: absolute;
     left: 0;
     right: 0;
-    top: 84%;
+    top: 90%;
     transform: translateY(-50%);
     margin-left: 30px;
     margin-top: 15px;
@@ -67,5 +66,22 @@ button#Sign_up_button{
     padding-left: 10px;
     padding-right: 10px;
     margin-bottom: 15px;
+  }
+
+  .error-message {
+    color:#FFFF;
+    text-align: center;
+    background-color: #f75555;
+    margin-left: 15px;
+    margin-right: 15px;
+    border-radius: 20px;
+    height: 30px;
+    padding: 5px;
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 33%;
+    transform: translateY(-50%);
   }
   

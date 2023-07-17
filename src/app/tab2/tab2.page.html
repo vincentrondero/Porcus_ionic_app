@@ -6,12 +6,42 @@
 <ion-content [fullscreen]="true">
   <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="filterPigs()" placeholder="Seach PigID" showCancelButton="focus"></ion-searchbar>
   
-  <ion-item *ngFor="let pigs of filteredPigs$ | async">
-    <ion-buttons slot="end">
-      <ion-icon name="ellipsis-vertical" aria-hidden="true" class="three_dots"></ion-icon>
-    </ion-buttons>
-    {{ pigs.pigID }}
-  </ion-item>
+  <div *ngFor="let pig of filteredPigs$ | async">
+    <ion-item [class.sold]="pig.status === 'Sold'" [ngClass]="{
+      'sick': pig.condition === 'Sick',
+      'pregnant': pig.condition === 'Pregnant',
+      'gestating': pig.condition === 'Gestating',
+      'deceased': pig.condition === 'Deceased'
+    }">
+      <ion-buttons slot="end">
+        <ion-button (click)="showDropdown(pig)">
+          <ion-icon name="ellipsis-vertical" aria-hidden="true" class="three_dots"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <div>
+        <span>{{ pig.pigID }}</span>
+        <span class="sold-indicator" *ngIf="pig.status === 'Sold'"> (Sold)</span>
+      </div>
+    </ion-item>
+    <div class="dropdown-container" *ngIf="pig.showDropdown">
+      <div class="dropdown-content">
+        <button (click)="selectPig(pig)">Edit</button>
+        <button class="dropdown-toggle" (click)="toggleStatusDropdown(pig)">
+          Condition
+          <ion-icon name="chevron-collapse-outline" slot="end"></ion-icon>
+        </button>
+        <div class="dropdown-menu" *ngIf="pig.showStatusDropdown">
+          <button class="dropdown-item" [ngClass]="{ 'active': pig.condition === 'Deceased' }" (click)="toggleCondition(pig, 'Deceased')">Deceased</button>
+          <button class="dropdown-item" [ngClass]="{ 'active': pig.condition === 'Sick' }" (click)="toggleCondition(pig, 'Sick')">Sick</button>
+          <button class="dropdown-item" [ngClass]="{ 'active': pig.condition === 'Pregnant' }" (click)="toggleCondition(pig, 'Pregnant')">Pregnant</button>
+          <button class="dropdown-item" [ngClass]="{ 'active': pig.condition === 'Gestating' }" (click)="toggleCondition(pig, 'Gestating')">Gestating</button>
+        </div>        
+        <button (click)="markAsSold(pig)">{{ pig.status === 'Sold' ? 'Unsold' : 'Sold' }}</button>
+      </div>
+    </div>
+  </div>
+  
+  
   
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-button id="sched_add_button" class="red-fab" size="medium" (click)="showOverlay()">
@@ -44,3 +74,26 @@
     </form>
   </div>
 </div>
+<div id="overlay" [ngStyle]="{ 'visibility': showOverlayContent1 ? 'visible' : 'hidden' }">
+  <div class="overlay-content">
+          <h2 id="overlay_header">Pig ID: {{ selectedPigID }}</h2>
+          <form class="centered-form">
+            <label for="weight">Weight:</label>
+            <input type="number" id="weight" name="Weight" [(ngModel)]="selectedPig.weight" required>
+      
+            <label for="dateOfBirth">Date of Birth:</label>
+            <input type="date" id="dateOfBirth" name="dateOfBirth" [(ngModel)]="selectedPig.dateOfBirth" required>
+      
+            <label for="gender">Type:</label>
+            <select id="gender" name="Gender" [(ngModel)]="selectedPig.gender" required>
+              <option value="Grower" class="option">Grower</option>
+              <option value="Sow" class="option">Sow</option>
+            </select>
+      <div class="button-container">
+        <button id="closeButton" (click)="hideOverlay1()">Close</button>
+        <button type="submit" id="addPigButton" (click)="addPig()">Add Pig</button>
+      </div>
+    </form>
+  </div>
+</div>
+

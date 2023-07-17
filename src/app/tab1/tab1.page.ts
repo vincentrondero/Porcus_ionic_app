@@ -47,6 +47,14 @@
           );
         }
       });
+      this.afAuth.authState.subscribe(user => {
+        if (user) {
+          this.userId = user.uid;
+          const tasksCollection = this.firestore.collection<Task>('tasks', ref => ref.where('userId', '==', this.userId));
+      
+          this.tasks$ = tasksCollection.valueChanges();
+        }
+      });
     }
 
     searchLocation() {

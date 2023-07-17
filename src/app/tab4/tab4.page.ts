@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import firebase from 'firebase/compat/app';
+import { v4 as uuidv4 } from 'uuid';
+import { finalize } from 'rxjs/operators';
 
 declare var google: any;
 declare global {
@@ -27,6 +28,9 @@ export class Tab4Page implements OnInit {
   farmName: string = '';
   operation: string = '';
   address: string = '';
+  profilePictureUrl: string = ''; // Holds the URL of the profile picture
+
+  
 
   constructor(private firestore: AngularFirestore, private storage: AngularFireStorage, private afAuth: AngularFireAuth) { }
 
@@ -36,6 +40,7 @@ export class Tab4Page implements OnInit {
     });
 
     this.fetchFarmDetails();
+    this.fetchProfileDetails();
   }
   
   loadGoogleMapsScript(callback: () => void) {
@@ -68,35 +73,88 @@ export class Tab4Page implements OnInit {
   onFileSelected(event: any) {
     this.profilePic = event.target.files[0];
   }
-  saveProfile() {
-    if (this.profileName && this.profilePic && this.category) {
-      const profileData = {
-        profileName: this.profileName,
-        category: this.category
-      };
 
-      this.firestore.collection('profiles').add(profileData)
-      .then((docRef) => {
-        const profileId = docRef.id;
-        const filePath = `profile_pictures/${profileId}`;
-        const fileRef = this.storage.ref(filePath);
-        fileRef.put(this.profilePic)
-          .then(() => {
-            console.log('Profile picture uploaded successfully.');
-            // Clear the input fields after saving
-            this.profileName = '';
-            this.profilePic = null;
-            this.category = '';
+  async saveProfile() {
+    if (this.profileName && this.profilePic && this.category) {
+      const user = await this.afAuth.currentUser;
+      if (user) {
+        const profileData = {
+          profileName: this.profileName,
+          category: this.category,
+          userId: user.uid // Include the user ID in profileData
+        };
+  
+        this.firestore.collection('profiles').add(profileData)
+          .then((docRef) => {
+            const profileId = docRef.id;
+            const filePath = `profile_pictures/${profileId}`;
+            const fileRef = this.storage.ref(filePath);
+            const uploadTask = fileRef.put(this.profilePic);
+  
+            uploadTask.snapshotChanges().pipe(
+              finalize(() => {
+                fileRef.getDownloadURL().subscribe((url) => {
+                  const profileWithPicture = {
+                    profileName: this.profileName,
+                    category: this.category,
+                    pictureUrl: url,
+                    userId: user.uid // Include the user ID in profileWithPicture
+                  };
+  
+                  // Update the profile document with the picture URL
+                  this.firestore.collection('profiles').doc(profileId).set(profileWithPicture)
+                    .then(() => {
+                      console.log('Profile saved successfully.');
+                      // Clear the input fields after saving
+                      this.profileName = '';
+                      this.profilePic = null;
+                      this.category = '';
+  
+                      // Set the profilePictureUrl property with the retrieved URL
+                      this.profilePictureUrl = url;
+                    })
+                    .catch((error) => {
+                      console.error('Error saving profile:', error);
+                    });
+                });
+              })
+            ).subscribe();
           })
           .catch((error) => {
-            console.error('Error uploading profile picture:', error);
+            console.error('Error saving profile:', error);
           });
-      })
-      .catch((error) => {
-        console.error('Error saving profile:', error);
-      });
+      }
+    }
   }
-}
+  
+  fetchProfileDetails() {
+    this.afAuth.authState.subscribe((user) => {
+      if (user) {
+        const userId = user.uid;
+        this.firestore
+          .collection('profiles', (ref) => ref.where('userId', '==', userId))
+          .valueChanges()
+          .subscribe((data: any) => {
+            if (data && data.length > 0) {
+              const profile = data[0];
+              this.profileName = profile.profileName;
+              this.category = profile.category;
+              this.profilePictureUrl = profile.pictureUrl;
+              console.log('Profile details fetched successfully:', profile);
+            } else {
+              this.profileName = '';
+              this.category = '';
+              this.profilePictureUrl = '';
+            }
+          });
+      } else {
+        this.profileName = '';
+        this.category = '';
+        this.profilePictureUrl = '';
+      }
+    });
+  }
+  
 showOverlay1() {
   this.showOverlayContent1 = true;
 }

@@ -1,20 +1,21 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  <ion-content [fullscreen]="true">
-    <ion-header collapse="condense">
-      <ion-toolbar>
-        <ion-title size="large" id="title">Porcus</ion-title>
-      </ion-toolbar>
-    </ion-header>
-
-  <ion-content>
-    <div id="container1">
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large" id="title">Porcus</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <p *ngIf="loginError" class="error-message">Invalid credentials or account already exists.</p>
+  <div id="container1">
     <form (ngSubmit)="signUp()">
-    <input type="text" id="username" name="username"  placeholder='Username' [(ngModel)]="name" required>
-    <input type="email" id="email" name="email"  placeholder='Email' [(ngModel)]="email" required>
-    <input type="password" id="password" name="password"  placeholder='Password'  [(ngModel)]="password" required>
-    <button expand="block" id="Sign_up_button" type="submit" >Sign Up</button>
+      <input type="text" id="username" name="username" placeholder='Username' [(ngModel)]="name" required>
+      <input type="email" id="email" name="email" placeholder='Email' [(ngModel)]="email" required>
+      <input type="password" id="password" name="password" placeholder='Password' [(ngModel)]="password" required>
+      <div>
+      <button expand="block" id="Sign_up_button" type="submit">Sign Up</button>
+      </div>
     </form>
   </div>
-  <p>Already have an account? <button  routerLink="/login" id="redirect_signIn">Login</button></p>
-  </ion-content>
+  <p id="bottompart">Already have an account? <button routerLink="/login" id="redirect_signIn">Login</button></p>
+</ion-content>
+
 
