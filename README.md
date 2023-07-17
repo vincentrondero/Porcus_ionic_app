@@ -19,32 +19,31 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp; PORCUS is a mobile application created using Ionic and angular, and is intended for use for small farmers, specifically backyard piggery farmers to help them manage and maintain their farm. This application revolves around two main modules namely the management of pigs as well as the management of transactions, or schedules to be exact. This would greatly help farmers track their individual pigs and manage their schedules efficiently all in one device which they carry around almost every time. 
 
-## How to run the project?
+# How to run the project?
 ### Environment 
-#### Installment
+> Ionic - https://ionicframework.com/docs/intro/cli<br>
 ```
+npm install -g @ionic/cli
+ionic -v
 ```
-clone the project 
+> Node.js - https://nodejs.org/en/download/<br>
 ```
-git clone https://github.com/AclanJod/Porkus_Backyard-Piggery-Management-System.git
+node -v
 ```
-#### Running the application
+> Git - https://git-scm.com/downloads<br>
 ```
-cd mobile_app
+git -v
+```
+> Visual Studio Code - https://code.visualstudio.com/<br>
+
+### Clone the project 
+```
+git clone https://github.com/vincentrondero/ionic_sample_app.git
+```
+### Running the application
+```
+npm install
 ionic serve
-```
-or you can specify the browser of your choice 
-```
-ionic serve --browser <browser_of_your_choice>
-```
-start server
-```
-```
-start your apache and mysql server in xampp before proceeding
-```
-cd ..
-cd server
-npm start
 ```
 
 ## Why is it noteworthy?
