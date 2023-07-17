@@ -1,5 +1,5 @@
-# PORCUS: Backyard Pig Farming Application
 
+![Image Description](src/assets/PORCUS.png)
 
 
 ### Brief Description of the Project
